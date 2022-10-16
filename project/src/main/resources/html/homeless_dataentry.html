@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html class="datapage" lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset='UTF-8'>
+    <title>Ending Homelessness</title>
+    <link rel="stylesheet" href="../css/homelessStyle.css">
+</head>
+
+<body>
+<header>
+    <div class='topnav' style="background-color: transparent">
+        <a href='homeless_mainpage.html'><h2>Main Page</h2></a>
+        <a href='homeless_missionStatement.html'><h2>Mission Statement</h2></a>
+        <a href='homeless_dataentry.html'><h2>Data Entry</h2></a>
+    </div>
+    <div class="icon">
+        <a href="homeless_mainpage.html">
+            <img src='../images/homeless.png' height=100em width=100em>
+        </a>
+    </div>
+</header>
+
+<form id="form" action="homeless_dataentry.html" method="post">
+    <div class="grid-datapage">
+        <div class="grid-datapage-item-1">
+            <h2>Display Controller</h2>
+
+            <label for="display">Table type</label>
+            <select id="display" name="display">
+                <option value="sum">sum</option>
+                <option value="detail">detail</option>
+                <option value="compare" selected>compare</option>
+            </select>
+            <br>
+
+            <div id="display-controller-more-option" hidden>
+            <label for="year">Year</label>
+            <select id="year" name="year">
+                <option value="">all years</option>
+                <option value="2016">2016</option>
+                <option value="2018">2018</option>
+            </select>
+            <br>
+            <label for="percentage">show percentage</label>
+            <input type="checkbox" id="percentage" name="percentage" value="1">
+            </div>
+
+            <div id="display-controller-sort" hidden>
+                <h2>Sorting</h2>
+                <label for="sorting1">Sorting Order 1</label>
+                <select id="sorting1" name="sorting1">
+                    <option value="">-</option>
+                    <option value="lga_name">LGA name</option>
+                    <option value="population">population</option>
+                    <option value="lga_population">LGA population</option>
+                    <option value="median_age">median age</option>
+                    <option value="median_mortgage">median mortgage</option>
+                    <option value="median_income">median income</option>
+                    <option value="median_rent">median rent</option>
+                </select>
+                <label for="descending1">Descending</label>
+                <input type="checkbox" id="descending1" name="descending1" value="desc"><br>
+                <div id = 'more-sorting' hidden>
+                <label for="sorting2">Sorting Order 2</label>
+                <select id="sorting2" name="sorting2">
+                    <option value="">-</option>
+                    <option value="lga_name">LGA name</option>
+                    <option value="population">population</option>
+                    <option value="lga_population">LGA population</option>
+                    <option value="median_age">median age</option>
+                    <option value="median_mortgage">median mortgage</option>
+                    <option value="median_income">median income</option>
+                    <option value="median_rent">median rent</option>
+                </select>
+                <label for="descending2">Descending</label>
+                <input type="checkbox" id="descending2" name="descending2" value="desc">
+                <br>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="grid-datapage-item-3">
+
+            <h2>LGA Info Filter</h2>
+
+            <label>Population:</label>
+            <div class="wrapper">
+                <div class="values">
+                    <span id="min-population" class="slider-value-span">0</span>
+                    <input name="min-population" hidden>
+                    <span> &dash; </span>
+                    <span id="max-population">100</span>
+                    <input name="max-population" hidden>
+                </div>
+                <div class="container">
+                    <div class="slider-track slider-track-pop"></div>
+                    <input type="range" min="0" max=" + popMax + " value="0" id="slider-pop1" oninput="popSlide1()">
+                    <input type="range" min="0" max=" + popMax + " value=" + popMax + " id="slider-pop2" oninput="popSlide2()">
+                </div>
+            </div>
+
+
+            <label>LGA area</label>
+            <div class="wrapper">
+                <div class="values">
+                    <span id="min-area">0</span>
+                    <input name="min-area" hidden>
+                    <span> &dash; </span>
+                    <span id="max-area">100</span>
+                    <input name="max-area" hidden>
+                </div>
+                <div class="container">
+                    <div class="slider-track slider-track-area"></div>
+                    <input type="range" min="0" max=" + areaMax + " value="0" id="slider-area1" oninput="areaSlide1()">
+                    <input type="range" min="0" max=" + areaMax + " value=" + areaMax + " id="slider-area2" oninput="areaSlide2()">
+                </div>
+            </div>
+
+
+            <label>Median Age</label>
+            <div class="wrapper">
+                <div class="values">
+                    <span id="min-age">0</span>
+                    <input name="min-age" hidden>
+                    <span> &dash; </span>
+                    <span id="max-age">100</span>
+                    <input name="max-age" hidden>
+                </div>
+                <div class="container">
+                    <div class="slider-track slider-track-age"></div>
+                    <input type="range" min="0" max=" + ageMax + " value="0" id="slider-age1" oninput="ageSlide1()">
+                    <input type="range" min="0" max=" + ageMax + " value=" + ageMax + " id="slider-age2" oninput="ageSlide2()">
+                </div>
+            </div>
+
+
+            <label>Median Mortgage</label>
+            <div class="wrapper">
+                <div class="values">
+                    <span id="min-mortgage">0</span>
+                    <input name="min-mortgage" hidden>
+                    <span> &dash; </span>
+                    <span id="max-mortgage">100</span>
+                    <input name="max-mortgage" hidden>
+                </div>
+                <div class="container">
+                    <div class="slider-track slider-track-mortgage"></div>
+                    <input type="range" min="0" max=" + mortgageMax + " value="0" id="slider-mortgage1" oninput="mortgageSlide1()">
+                    <input type="range" min="0" max=" + mortgageMax + " value=" + mortgageMax + " id="slider-mortgage2" oninput="mortgageSlide2()">
+                </div>
+            </div>
+
+
+            <label>Median Income</label>
+            <div class="wrapper">
+                <div class="values">
+                    <span id="min-income">0</span>
+                    <input name="min-income" hidden>
+                    <span> &dash; </span>
+                    <span id="max-income">100</span>
+                    <input name="max-income" hidden>
+                </div>
+                <div class="container">
+                    <div class="slider-track slider-track-income"></div>
+                    <input type="range" min="0" max=" + incomeMax + " value="0" id="slider-income1" oninput="incomeSlide1()">
+                    <input type="range" min="0" max=" + incomeMax + " value=" + incomeMax + " id="slider-income2" oninput="incomeSlide2()">
+                </div>
+            </div>
+
+            <label>Median Rent</label>
+            <div class="wrapper">
+                <div class="values">
+                    <span id="min-rent">0</span>
+                    <input name="min-rent" hidden>
+                    <span> &dash; </span>
+                    <span id="max-rent">100</span>
+                    <input name="max-rent" hidden>
+                </div>
+                <div class="container">
+                    <div class="slider-track slider-track-rent"></div>
+                    <input type="range" min="0" max=" + rentMax + " value="0" id="slider-rent1" oninput="rentSlide1()">
+                    <input type="range" min="0" max=" + rentMax + " value=" + rentMax + " id="slider-rent2" oninput="rentSlide2()">
+                </div>
+            </div>
+        </div>
+
+        <div class="grid-datapage-item-2">
+            <h2>Homeless Filter</h2>
+
+
+            <label for="gender">Gender</label>
+            <select id="gender" name="gender">
+                <option value="">all</option>
+                <option value="male">male</option>
+                <option value="female">female</option>
+            </select><br>
+            <br>
+            <div id="homeless">
+            <label for="homelessType">Homeless Type</label>
+            <select id="homelessType" name="homelessType">
+                <option value="">all</option>
+                <option value="homeless">homeless</option>
+                <option value="homeless_at_risk">at_risk</option>
+            </select><br>
+            <br>
+            </div>
+            <label>Age Range</label><br>
+            <input type="checkbox" id="age-range0" name="age-range0" value="0">
+            <label for="age-range0">all</label>
+            <input type="checkbox" id="age-range1" name="age-range1" value="1">
+            <label for="age-range1">0-9</label>
+            <input type="checkbox" id="age-range2" name="age-range2" value="2">
+            <label for="age-range2">10-19</label>
+            <input type="checkbox" id="age-range3" name="age-range3" value="3">
+            <label for="age-range3">20-29</label>
+            <input type="checkbox" id="age-range4" name="age-range4" value="4">
+            <label for="age-range4">30-39</label><br>
+            <input type="checkbox" id="age-range5" name="age-range5" value="5">
+            <label for="age-range5">40-49</label>
+            <input type="checkbox" id="age-range6" name="age-range6" value="6">
+            <label for="age-range6">50-59</label>
+            <input type="checkbox" id="age-range7" name="age-range7" value="7">
+            <label for="age-range7">60+</label>
+            <input type="checkbox" id="age-range8" name="age-range8" value="8">
+            <label for="age-range8">unknown</label><br>
+        </div>
+
+        <div class="grid-datapage-item-4">
+            <h2>State and LGAs</h2>
+            <input type="checkbox" id="all" name="state" value="">
+            <label for="all">all</label><br>
+            <input type="checkbox" id="nsw" name="state1" value="1">
+            <label for="nsw">NSW</label>
+            <input type="checkbox" id="vic" name="state2" value="2">
+            <label for="vic">Victoria</label>
+            <input type="checkbox" id="qld" name="state3" value="3">
+            <label for="qld">QLD</label>
+            <input type="checkbox" id="sa" name="state4" value="4">
+            <label for="sa">South Australia</label><br>
+            <input type="checkbox" id="wa" name="state5" value="5">
+            <label for="wa">Western Australia</label>
+            <input type="checkbox" id="Tasmania" name="state6" value="6">
+            <label for="Tasmania">Tasmania</label><br>
+            <input type="checkbox" id="nt" name="state7" value="7">
+            <label for="nt">Northern Territory</label>
+            <input type="checkbox" id="act" name="state8" value="8">
+            <label for="act">ACT</label>
+            <input type="checkbox" id="other" name="state9" value="9">
+            <label for="other">other</label>
+
+            <br>
+            <label for="lga">lga search</label>
+            <input type="search" id="lga" name="lga" placeholder="e.g. melbourne">
+        </div>
+    </div>
+    <button id="reset-button" value="clear" style="background-color: rgb(200,0,0,60%)">clear filters</button>
+    <button type="submit" value="submit" style="background-color: rgb(0,200,0,70%)">retrieve data</button>
+</form>
+
+
+<div class="lowdiv">
+    <p></p>
+</div>
+<footer class="footer">
+    <!--The Team-->
+    <span class="hidden">Team</span><span>name2(studentNumber2)</span><span>name(studentNumber)</span>
+
+</footer>
+<script src="../css/homelessJS.js"></script>
+</body>
+</html>

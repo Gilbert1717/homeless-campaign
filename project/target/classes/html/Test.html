@@ -1,0 +1,21 @@
+html += "
+<script>let data = [" + printData(compareObj) + "]; " +
+
+    """
+    console.log(data);
+    $('#result-table').DataTable({
+        data: data,
+        columns: [
+            { data: 'lgaName' },
+            { data: 'populationDif' },
+            { data: 'homelessDif' },
+            { data: 'atRiskDif' },
+            { data: 'shift' }
+        ],
+        "iDisplayLength": 25,
+        "order": [],
+        scrollX: true
+    });
+    """;
+
+    html += "</script>";
